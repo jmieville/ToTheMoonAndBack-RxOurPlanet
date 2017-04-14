@@ -20,11 +20,22 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        categories
+        .asObservable()
+            .subscribe(onNext: { [weak self] _ in
+                DispatchQueue.main.async {
+                    self?.tableView.reloadData()
+                }
+            })
+        .addDisposableTo(disposeBag)
         startDownload()
     }
     
     func startDownload() {
         let eoCategories = EONET.categories
+        eoCategories
+        .bindTo(categories)
+        .addDisposableTo(disposeBag)
     }
     
     // MARK: UITableViewDataSource
