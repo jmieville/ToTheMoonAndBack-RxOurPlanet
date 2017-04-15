@@ -14,12 +14,23 @@ import RxCocoa
 class CategoriesViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     @IBOutlet var tableView: UITableView!
+    var activityIndicator: UIActivityIndicatorView!
+    let download = DownloadView()
     
     let categories = Variable<[EOCategory]>([])
     let disposeBag = DisposeBag()
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        activityIndicator = UIActivityIndicatorView()
+        activityIndicator.color = .black
+        navigationItem.rightBarButtonItem = UIBarButtonItem(customView: activityIndicator)
+        activityIndicator.startAnimating()
+        
+        view.addSubview(download)
+        view.layoutIfNeeded()
+        print(download.frame)
         
         categories
         .asObservable()
@@ -33,6 +44,10 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
     }
     
     func startDownload() {
+        
+        download.progress.progress = 0.0
+        download.label.text = "Download: 0%"
+        
         let eoCategories = EONET.categories
         let downloadedEvents = eoCategories.flatMap { categories in
             return Observable.from(categories.map { category in
@@ -42,8 +57,8 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
             .merge(maxConcurrent: 2)
         
         let updatedCategories = eoCategories.flatMap { categories in
-            downloadedEvents.scan(categories) { updated, events in
-                return updated.map { category in
+            downloadedEvents.scan((0,categories)) { tuple, events in
+                return (tuple.0 + 1, tuple.1.map { category in
                     let eventsForCategory = EONET.filteredEvents(events: events, forCategory: category)
                     if !eventsForCategory.isEmpty {
                         var cat = category
@@ -51,12 +66,26 @@ class CategoriesViewController: UIViewController, UITableViewDataSource, UITable
                         return cat
                     }
                     return category
-                }
+                })
             }
         }
+            .do(onNext: { [weak self] tuple in
+                DispatchQueue.main.async {
+                    let progress = Float(tuple.0) / Float(tuple.1.count)
+                    self?.download.progress.progress = progress
+                    let percent = Int(progress * 100.0)
+                    self?.download.label.text = "Download: \(percent)%"
+                }
+            })
+            .do(onCompleted: { [weak self] in
+                DispatchQueue.main.async {
+                    self?.activityIndicator.stopAnimating()
+                    self?.download.isHidden = true
+                }
+            })
         
         eoCategories
-            .concat(updatedCategories)
+            .concat(updatedCategories.map { $0.1 })
             .bindTo(categories)
             .addDisposableTo(disposeBag)
     }

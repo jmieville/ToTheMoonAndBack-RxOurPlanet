@@ -15,6 +15,7 @@
 		491BC7CE1EA124DD00FDE95F /* EOEvent.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BC7CD1EA124DD00FDE95F /* EOEvent.swift */; };
 		491BC7D01EA124ED00FDE95F /* EONET.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BC7CF1EA124ED00FDE95F /* EONET.swift */; };
 		491BC7D21EA124F800FDE95F /* EOLocation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BC7D11EA124F800FDE95F /* EOLocation.swift */; };
+		491BC7D41EA1F64800FDE95F /* DownloadView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 491BC7D31EA1F64800FDE95F /* DownloadView.swift */; };
 		499B5A831EA107F000ABFBB2 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B5A821EA107F000ABFBB2 /* AppDelegate.swift */; };
 		499B5A851EA107F000ABFBB2 /* CategoriesViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 499B5A841EA107F000ABFBB2 /* CategoriesViewController.swift */; };
 		499B5A881EA107F000ABFBB2 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 499B5A861EA107F000ABFBB2 /* Main.storyboard */; };
@@ -42,6 +43,7 @@
 		491BC7CD1EA124DD00FDE95F /* EOEvent.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EOEvent.swift; sourceTree = "<group>"; };
 		491BC7CF1EA124ED00FDE95F /* EONET.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EONET.swift; sourceTree = "<group>"; };
 		491BC7D11EA124F800FDE95F /* EOLocation.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = EOLocation.swift; sourceTree = "<group>"; };
+		491BC7D31EA1F64800FDE95F /* DownloadView.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DownloadView.swift; sourceTree = "<group>"; };
 		499B5A7F1EA107F000ABFBB2 /* RxOurPlanet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = RxOurPlanet.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		499B5A821EA107F000ABFBB2 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		499B5A841EA107F000ABFBB2 /* CategoriesViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoriesViewController.swift; sourceTree = "<group>"; };
@@ -120,6 +122,7 @@
 				499B5A841EA107F000ABFBB2 /* CategoriesViewController.swift */,
 				491BC7C51EA124AA00FDE95F /* EventsViewController.swift */,
 				491BC7C71EA124B900FDE95F /* EventCell.swift */,
+				491BC7D31EA1F64800FDE95F /* DownloadView.swift */,
 			);
 			path = RxOurPlanet;
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				491BC7D01EA124ED00FDE95F /* EONET.swift in Sources */,
 				499B5A851EA107F000ABFBB2 /* CategoriesViewController.swift in Sources */,
 				499B5A831EA107F000ABFBB2 /* AppDelegate.swift in Sources */,
+				491BC7D41EA1F64800FDE95F /* DownloadView.swift in Sources */,
 				491BC7C61EA124AA00FDE95F /* EventsViewController.swift in Sources */,
 				491BC7CC1EA124D200FDE95F /* EOError.swift in Sources */,
 				491BC7CE1EA124DD00FDE95F /* EOEvent.swift in Sources */,
